@@ -1,0 +1,15 @@
+
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "ESNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "moduleResolution": "node"
+  },
+  "include": ["bin/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
+
