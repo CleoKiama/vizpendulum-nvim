@@ -1,0 +1,11 @@
+active,branch,directory,file_name,file_type,project_name,timestamp
+true,main,/home/cleo/plugins/vizpendulum-nvim/ts,/home/cleo/plugins/vizpendulum-nvim/ts/src/index.ts,typescript,vizpendulum-nvim,2024-10-22 09:30:15
+true,main,/home/cleo/dotfiles/.config/nvim,/home/cleo/dotfiles/.config/nvim/init.lua,lua,unknown_project,2024-10-22 09:31:52
+false,main,/media/Library/obsidian-vaults,/media/Library/obsidian-vaults/daily.md,markdown,obsidian-vault,2024-10-22 09:34:13
+true,main,/home/cleo/plugins/pendulum-nvim,/home/cleo/plugins/pendulum-nvim/src/parser.lua,lua,pendulum-nvim,2024-10-22 09:36:05
+true,main,/home/cleo/plugins/image-nvim,/home/cleo/plugins/image-nvim/img-handler.js,javascript,image-nvim,2024-10-22 09:38:02
+false,feature-x,/home/cleo/projects/my-app,/home/cleo/projects/my-app/src/app.jsx,javascript,my-app,2024-10-22 09:40:29
+true,main,/media/Library/obsidian-vaults,/media/Library/obsidian-vaults/research/gleam.md,markdown,obsidian-vault,2024-10-22 09:42:10
+false,fix-typo,/home/cleo/plugins/pendulum-nvim,/home/cleo/plugins/pendulum-nvim/CHANGELOG.md,markdown,pendulum-nvim,2024-10-22 09:44:34
+true,main,/home/cleo/dotfiles/.config/nvim,/home/cleo/dotfiles/.config/nvim/lua/keymaps.lua,lua,unknown_project,2024-10-22 09:46:05
+false,main,/home/cleo/config/hyprland,/home/cleo/config/hyprland/wayland.sh,shell,hyprland,2024-10-22 09:48:00

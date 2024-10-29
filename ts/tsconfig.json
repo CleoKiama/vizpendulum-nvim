@@ -1,15 +1,14 @@
-
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "ESNext",
+    "target": "ES2020", // You can change this to your desired ECMAScript version
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
-    "moduleResolution": "node"
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist" // Adjust the output directory as needed
   },
-  "include": ["bin/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"], // Adjust this to point to your TypeScript files
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
 
