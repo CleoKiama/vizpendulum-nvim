@@ -1,5 +1,4 @@
 import parseData from "../src/parseData";
-import { TrackingData } from "../src/types";
 import { writeFileSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 import os from "node:os";

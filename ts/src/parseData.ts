@@ -1,5 +1,4 @@
 import csv from "csv-parser";
-import c from "ansi-colors";
 import { createReadStream } from "node:fs";
 import { RowSchema, type Row, type TrackingData } from "./types";
 import { ProjectTracker } from "./ProjectTracker";
@@ -26,7 +25,7 @@ export type PrevFileType = {
 function calculateTimeDiff(current: Date, previous: Date): number {
 	const diff = current.getTime() - previous.getTime();
 	const timeInSeconds = diff / 1000;
-	return timeInSeconds > 0 && timeInSeconds <= 120 ? timeInSeconds : 0;
+	return timeInSeconds > 0 && timeInSeconds <= TIME_LENGTH ? timeInSeconds : 0;
 }
 
 function getPrevItemTime(
@@ -47,13 +46,9 @@ export default async function parseData(
 		createReadStream(fileDataPath)
 			.pipe(csv())
 			.on("data", (rawRow: unknown) => {
-				try {
-					const row = RowSchema.parse(rawRow);
-					const isActive = row.active.toLowerCase() === "true";
-					if (isActive) processRow(row, tracker);
-				} catch (error) {
-					console.error(c.red(`Invalid row data: ${error}`));
-				}
+				const row = RowSchema.parse(rawRow);
+				const isActive = row.active.toLowerCase() === "true";
+				if (isActive) processRow(row, tracker);
 			})
 			.on("end", () => {
 				const projects = tracker.getAllProjects();

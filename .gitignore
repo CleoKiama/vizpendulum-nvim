@@ -1,5 +1,6 @@
 # Node.js dependencies and build artifacts
 ts/node_modules/
+ts/dist
 ts/package-lock.json
 
 # Logs and debugging files
@@ -30,6 +31,8 @@ media/images/output.png
 
 # Temp files and editor files
 *.tmp
-*.temp
+
+ts/src/tmp/
+*temp
 .idea/
 .vscode/
