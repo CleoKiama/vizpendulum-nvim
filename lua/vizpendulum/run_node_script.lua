@@ -1,5 +1,6 @@
 -- run_node_script.lua
 local Job = require("plenary.job")
+local uv = vim.loop
 
 local M = {}
 
@@ -11,15 +12,32 @@ local function get_plugin_root()
 	return vim.fn.fnamemodify(file_path, ":h:h:h")
 end
 
-local node_script_path = get_plugin_root() .. "/ts/dist/plugin.js"
+local plugin_root = get_plugin_root()
+local node_script_path = plugin_root .. "/ts/dist/plugin.js"
+
+local function check_dist_exists()
+	local dist_dir = plugin_root .. "/ts/dist"
+	local stat = uv.fs_stat(dist_dir)
+	local file_stat = uv.fs_stat(node_script_path)
+
+	if not stat or not file_stat then
+		vim.notify("Please run VizpendulumBuild", vim.log.levels.ERROR)
+		return false
+	end
+	return true
+end
 
 function M.run_node_script(opts, callback)
+	if not check_dist_exists() then
+		return
+	end
+
 	local result
 	local stderr_results = {}
 
 	local job = Job:new({
 		command = "tsx",
-		args = { node_script_path, opts }, -- Pass viz_type as an argument
+		args = { node_script_path, opts },
 		on_stdout = function(_, data)
 			result = data
 		end,

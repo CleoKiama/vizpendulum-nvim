@@ -1,4 +1,5 @@
 local image_api = require("image")
+local build_api = require("vizpendulum.build")
 local api = vim.api
 
 local M = {}
@@ -45,7 +46,7 @@ local default_opts = {
 		line = {
 			gradient = {
 				start = "#3b82f6",
-				["end"] = "#60a5fa", -- Use square brackets to handle the reserved keyword
+				["end"] = "#60a5fa",
 			},
 			stroke_width = 2,
 		},
@@ -80,7 +81,6 @@ local plugin_opts = {}
 local image_buf = require("vizpendulum.create_image_buffer")
 local node_proc = require("vizpendulum.run_node_script")
 
--- Add cleanup function
 local function cleanup_current_image()
 	if state.current_image then
 		state.current_image:clear()
@@ -94,10 +94,8 @@ function M.create_visualization(viz_type)
 		return
 	end
 
-	-- Clean up existing image before creating new one
 	cleanup_current_image()
 
-	-- Get buffer and window
 	local image_dimensions = image_buf.open()
 	state.current_buffer = image_dimensions.buf
 	state.current_window = image_dimensions.win
@@ -142,14 +140,16 @@ end
 function M.setup(opts)
 	plugin_opts = vim.tbl_deep_extend("force", default_opts, opts or {})
 
-	-- Register commands
 	for cmd_name, viz_type in pairs(viz_commands) do
 		api.nvim_create_user_command(cmd_name, function()
 			M.create_visualization(viz_type)
 		end, {})
 	end
 
-	-- Register cleanup command
+	api.nvim_create_user_command("VizpendulumBuild", function()
+		build_api.build()
+	end, {})
+
 	api.nvim_create_user_command("CloseMetrics", function()
 		M.cleanup()
 		image_buf.close_tracker()
