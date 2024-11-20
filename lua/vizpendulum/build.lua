@@ -10,7 +10,7 @@ function M.build()
 		return false
 	end
 
-	vim.notify("Installing npm packages", vim.log.levels.INFO)
+	vim.notify("Building vizpendulum.nvim", vim.log.levels.INFO)
 	Job:new({
 		command = "npm",
 		args = { "install" },
@@ -21,7 +21,6 @@ function M.build()
 				return
 			end
 
-			vim.notify("Building vizpendulum.nvim...", vim.log.levels.INFO)
 			Job:new({
 				command = "npm",
 				args = { "run", "build" },

@@ -50,7 +50,7 @@ function M.run_node_script(opts, callback)
 			else
 				print("Node script failed with exit code:", return_val)
 				for _, err in ipairs(stderr_results) do
-					print("Error:", err)
+					vim.notify("Error:" .. err, vim.log.levels.ERROR)
 				end
 			end
 		end,

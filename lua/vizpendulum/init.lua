@@ -10,7 +10,7 @@ local viz_types = {
 	},
 	pieChart = {
 		type = "pieChart",
-		config_key = "pie_chart",
+		config_key = "file_types_pie_chart",
 	},
 }
 
@@ -20,7 +20,7 @@ local state = {
 	current_window = nil,
 }
 local default_opts = {
-	log_file = "/home/cleo/pendulum-log.csv",
+	log_file = vim.fn.expand("$HOME/pendulum-log.csv"),
 	image_width = 720,
 	image_height = 500,
 	line_graph = {
@@ -57,10 +57,10 @@ local default_opts = {
 			stroke_width = 2,
 		},
 	},
-	pie_chart = {
+	file_types_pie_chart = {
 		text = {
-			color = "white",
-			font_size = "12px",
+			color = "green",
+			font_size = "16px",
 			anchor = "middle",
 		},
 		slice = {
@@ -72,8 +72,8 @@ local default_opts = {
 }
 
 local viz_commands = {
-	VizpendulumShowLineGraph = "lineGraph",
-	VizpendulumShowPieChart = "pieChart",
+	VizpendulumShowCodingTime = "lineGraph",
+	VizpendulumShowFileTypes = "pieChart",
 }
 
 local plugin_opts = {}
@@ -150,7 +150,7 @@ function M.setup(opts)
 		build_api.build()
 	end, {})
 
-	api.nvim_create_user_command("CloseMetrics", function()
+	api.nvim_create_user_command("VizpendulumClose", function()
 		M.cleanup()
 		image_buf.close_tracker()
 	end, {})
