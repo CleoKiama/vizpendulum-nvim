@@ -1,6 +1,6 @@
 import parseData from "./parseData";
 import generateLineGraph from "./LineGraph/drawLineGraph";
-import generatePieChart from "./pieChart";
+import generatePieChart from "./fileTypeTime";
 import fs from "fs-extra";
 import { z } from "zod";
 

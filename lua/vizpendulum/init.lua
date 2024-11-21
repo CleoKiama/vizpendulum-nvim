@@ -60,7 +60,7 @@ local default_opts = {
 	file_types_pie_chart = {
 		text = {
 			color = "green",
-			font_size = "16px",
+			font_size = "17px",
 			anchor = "middle",
 		},
 		slice = {

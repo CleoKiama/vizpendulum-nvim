@@ -1,5 +1,6 @@
 local M = {}
 local Job = require("plenary.job")
+local Spinner = require("vizpendulum.spinner")
 
 function M.build()
 	local root_dir = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h:h:h")
@@ -10,10 +11,10 @@ function M.build()
 		return false
 	end
 
-	vim.notify("Building vizpendulum.nvim", vim.log.levels.INFO)
+	local spinner_stop = Spinner.notify_with_spinner("Building vizpendulum.nvim", vim.log.levels.INFO)
 	Job:new({
 		command = "npm",
-		args = { "install" },
+		args = { "install", "--omit=dev" },
 		cwd = dir,
 		on_exit = function(_, return_val)
 			if return_val ~= 0 then
@@ -33,8 +34,10 @@ function M.build()
 				end,
 				on_exit = function(_, code)
 					if code == 0 then
+						spinner_stop()
 						vim.notify("Build successful", vim.log.levels.INFO)
 					else
+						spinner_stop()
 						vim.notify("Build failed with code: " .. code, vim.log.levels.ERROR)
 					end
 				end,
